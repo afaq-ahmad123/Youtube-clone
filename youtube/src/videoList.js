@@ -6,7 +6,9 @@ export default function VideoList(props){
     let videos = props.videos;
     if (videos) {
         videos = videos.map((video)=>{
-                return (<li><VideoItem video={video}/></li>);
+                return (<li><VideoItem video={video}
+                    handleSelectVideo={props.handleSelectVideo} 
+                    key={video.id.videoId} /></li>);
             });
     }
     return (<ul className="list">{videos}</ul>);
