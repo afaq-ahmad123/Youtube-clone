@@ -36,9 +36,20 @@ code {
 form {
   border-radius: 0;
   border: 0px solid #ddd;
-  width: 1100px;
+  width: 1000px;
   padding-right: 15px;
   position: relative;
+}
+
+.load {
+  background-color: whitesmoke;
+  border: whitesmoke;
+  width: 150px;
+  cursor: move;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 19px;
+  margin-bottom: 15px;
 }
 
 .search {
@@ -53,7 +64,7 @@ form {
   right: 10px;
   top: 15% !important;
   padding-right: 50px;
-  width: 50%;
+  width: 350px;
 }
 
 .play {

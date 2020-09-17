@@ -10,6 +10,7 @@ function App() {
   const [search, setSearch] = useState('');
   const [videos, setVideos] = useState();
   const [selectedVideo, setSelectedVideo] = useState();
+  const [nextPage, setNextPage] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,12 +18,26 @@ function App() {
       params: {
         q: search
       }
-    }).then((response)=>
-    setVideos(response.data.items));
+    }).then((response)=>{
+      setNextPage(response.data.nextPageToken);
+      setVideos(response.data.items);
+  });
   }
 
   const handleSelectVideo = (video)=>{
     setSelectedVideo(video);
+  }
+
+  const handleLoad = async ()=>{
+    await API.get('/search',{
+      params: {
+        q: search,
+        pageToken: nextPage,
+      }
+    }).then((response)=>{
+      setNextPage(response.data.nextPageToken);
+      setVideos(response.data.items);
+    });
   }
   
   return (
@@ -44,7 +59,7 @@ function App() {
                 <VideoPlay video={selectedVideo}/>
               </div>
               <div className="list">
-                <VideoList handleSelectVideo={handleSelectVideo} videos={videos}/>
+                <VideoList handleLoad={handleLoad} handleSelectVideo={handleSelectVideo} videos={videos}/>
               </div>
             </div>
           </div>
