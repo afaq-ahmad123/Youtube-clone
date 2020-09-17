@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+//This component is to show the selected played video on the main page
 export default function VideoPlay(props) {
     if(!props.video) {
         return (
