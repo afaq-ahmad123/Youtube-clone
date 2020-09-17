@@ -4,6 +4,8 @@ import API from './youtube';
 import VideoList from './videoList';
 import VideoPlay from './VideoPlay';
 
+
+// the main component to show all fields in header
 function App() {
   const [search, setSearch] = useState('');
   const [videos, setVideos] = useState();
@@ -25,17 +27,23 @@ function App() {
   
   return (
           <div className="home">
-            <form onSubmit={ handleSubmit }>
-              <input type="text" value={search} placeholder="Search..." 
-                onChange={e=>setSearch(e.target.value)} name="search" 
-              />
-              <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-            <div className="item">
-              <div>
+            <div className="header">
+              <div className="icon">
+              <img className="img" src={require('./youtube.png')} alt="Youtube"/>
+              <div className="text"> YouTube </div>
+              </div>
+              <form onSubmit={ handleSubmit }>
+                <input type="text" value={search} placeholder="Search..." 
+                  onChange={e=>setSearch(e.target.value)} name="search" 
+                  className="search"/>
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+            <div>
+              <div className="play">
                 <VideoPlay video={selectedVideo}/>
               </div>
-              <div>
+              <div className="list">
                 <VideoList handleSelectVideo={handleSelectVideo} videos={videos}/>
               </div>
             </div>
